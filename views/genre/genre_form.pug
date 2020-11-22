@@ -1,0 +1,19 @@
+extends ../layout
+
+block content
+   h1 #{title}
+
+   form(method='POST' action='')
+      div.form-group
+         label(for='name') Genero:
+         input#name.form-control(type='text', placeholder="Fantasy, Poetry, etc..", 
+            name='name' value=(genre === undefined ? '': genre.name) autocomple="off")
+      button.btn.btn-primary(type='submit') Aceptar
+
+   if errors
+      hr
+      ul
+       for error in errors
+         li.text-danger!= error.msg
+
+         

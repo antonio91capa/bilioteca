@@ -1,0 +1,22 @@
+extends ../layout
+
+block content
+
+  h1 ID: #{bookinstance._id}
+   div.text-right
+      a.btn.btn-primary.btn-sm(href=bookinstance.url+'/update' style="margin-right: 8px;") Actualizar Copia del libro
+  
+  p #[strong Título del libro:] 
+    a(href=bookinstance.book.url) #{bookinstance.book.title}
+  p #[strong Imprenta:] #{bookinstance.imprint}
+
+  p #[strong Estado:] 
+    if bookinstance.status=='Available'
+      span.text-success #{bookinstance.status}
+    else if bookinstance.status=='Maintenance'
+      span.text-danger #{bookinstance.status}
+    else
+      span.text-warning #{bookinstance.status} 
+      
+  if bookinstance.status!='Available'
+    p #[strong Fecha Disponible:] #{bookinstance.date_formatted}

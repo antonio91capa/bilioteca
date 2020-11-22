@@ -1,0 +1,22 @@
+extends ../layout
+
+block content
+   h1 Autor: #{author.name}
+   p #{author.lifespan}
+   div.text-right
+      a.btn.btn-primary.btn-sm(href=author.url+'/update' style="margin-right: 8px;") Actualizar Autor
+      a.btn.btn-primary.btn-sm(href=author.url+'/delete') Eliminar Autor
+  
+   div(style='margin-left:20px;margin-top:20px')
+
+      h4 Libros
+    
+      dl
+         each book in author_books
+            dt 
+               a(href=book.url) #{book.title}
+            dd #{book.summary}
+            hr
+         
+         else
+            p El autor no tiene libros.

@@ -1,0 +1,29 @@
+extends ../layout
+
+block content
+   h1 #{title}: #{book.title}
+
+   if bookinstance.length
+      p.bg-danger.p-2.text-white #[strong Elimina las siguientes copias disponibles antes de eliminar el libro.]
+
+      div(style='margin-left:20px;margin-top:20px')
+         h4 Copias
+
+         each bookin in bookinstance
+            hr
+            p #[strong Imprenta:] #{bookin.imprint}
+            p #[strong Fecha de devolucion:] #{bookin.datetime_formatted}
+            if bookin.status == 'Available'
+               p.text-success #{bookin.status}
+            else if bookin.status == 'Maintenance'
+               p.text-danger #{bookin.status}
+            else
+               p.text-warning #{bookin.status}
+
+   else
+      div(style='margin-left: 20px; margin-top: 20px')
+         p ¿Realmente deseas eliminar el libro?
+         form(method='POST', action='')
+            div.form-group
+               input#bookid.form-control(type='hidden', name='bookid', required='true', value=book._id)
+            button.btn.btn-primary(type='submit') Eliminar

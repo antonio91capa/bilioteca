@@ -1,0 +1,18 @@
+extends layout
+
+block content
+   h1= title
+   p Bienvenido al #[em LocalLibrary]
+   h1 Contenido Dinámico
+
+   if error
+      p error getting dynamic content
+   else
+      p La Libreria tiene los siguientes registros:
+
+      ul
+         li #[strong Libros:] !{data.book_count}
+         li #[strong Copias:] !{data.book_intance_count}
+         li #[strong Copias Disponibles:] !{data.book_instance_available}
+         li #[strong Autores:] !{data.author_count}
+         li #[strong Géneros:] !{data.genre_count}

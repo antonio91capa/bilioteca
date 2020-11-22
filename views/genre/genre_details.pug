@@ -1,0 +1,22 @@
+extends ../layout
+
+block content
+
+   h1 Género: #{genre.name}
+   div.text-right
+      a.btn.btn-primary.btn-sm(href=genre.url+'/update' style="margin-right: 8px;") Actualizar Genero
+      a.btn.btn-primary.btn-sm(href=genre.url+'/delete') Eliminar Genero
+      
+  
+   div(style='margin-left:20px;margin-top:20px')
+      h4 Libros
+    
+      dl
+         each book in genre_books
+            dt 
+               a(href=book.url) #{book.title}
+            dd #{book.summary}
+            br
+         
+         else
+            p El genero no tiene libros

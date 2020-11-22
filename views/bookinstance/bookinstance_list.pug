@@ -1,0 +1,20 @@
+extend ../layout
+
+block content
+   h1= title
+
+   ul
+      each bookin in booksinstance
+         li
+            a(href=bookin.url) #{bookin.book.title}: #{bookin.imprint} - 
+            if bookin.status == 'Available'
+               span.text-success #{bookin.status} 
+            else if bookin.status == 'Maintenance'
+               span.text-danger #{bookin.status} 
+            else
+               span.text-warning #{bookin.status} 
+            if bookin.status != 'Available'
+               span (Due: #{bookin.datetime_formatted})
+      
+      else
+         li There are no book copies

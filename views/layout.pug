@@ -1,0 +1,45 @@
+doctype html
+html
+  head
+   title= title
+   meta(charset="utf-8")
+   meta(name="viewport", content="width=device-width, initial-scale=1.0")
+   link(rel="icon", href="/images/favicon.png", type="image/png")
+   link(rel="stylesheet", href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css", integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z", crossorigin="anonymous")
+   script(src="https://code.jquery.com/jquery-3.5.1.slim.min.js", integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj", crossorigin="anonymous")
+   script(src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js", integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV", crossorigin="anonymous")
+
+   <!-- Bootstrap Date-Picker Plugin -->
+   link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css")
+   script(type="text/javascript", src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js")
+   
+   script(src="/javascripts/script.js")
+   link(rel='stylesheet', href='/stylesheets/style.css')
+  body
+   div(class='container-fluid')
+      div(class="row")
+         div(class="col-sm-2")
+            ul(class="sidebar-nav")
+               li
+                  a(href="/") Inicio
+               li
+                  a(href="/catalog/books") Lista de Libros
+               li
+                  a(href="/catalog/authors") Lista de Autores
+               li
+                  a(href="/catalog/genres") Lista de Géneros
+               li
+                  a(href="/catalog/bookinstances") Lista de Copias de libros
+               li
+                  hr
+               li
+                  a(href="/catalog/book/create") Crear Libro
+               li
+                  a(href="/catalog/author/create") Crear Autor
+               li
+                  a(href="/catalog/genre/create") Crear Género
+               li
+                  a(href="/catalog/bookinstance/create") Crear Copia de Libros
+
+         div(class="col-sm-10")   
+            block content

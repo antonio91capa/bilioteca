@@ -1,0 +1,42 @@
+extend ../layout
+
+block content
+   h1 Titulo: #{book.title}
+   div.text-right
+      a.btn.btn-primary.btn-sm(href=book.url+'/update' style="margin-right: 8px;") Actualizar Libro
+      a.btn.btn-primary.btn-sm(href=book.url+'/delete') Eliminar Libro
+  
+   p #[strong Autor: ]
+      a(href=book.author.url) #{book.author.name}
+   p #[strong Descripcion:] #{book.summary}
+   p #[strong ISBN:] #{book.isbn}
+   p #[strong Generos:] #{book.genre.name}
+      each val, index in book.genre
+         a(href=val.url) #{val.name}
+         if index < book.genre.length - 1
+            |, 
+
+
+   div(style='margin-left: 20px; margin-top: 20px')
+      h4 Copias
+
+      each val in book_instances
+         hr
+         if val.status == 'Available'
+            p.text-success #{val.status}
+         else if val.status == 'Maintenance'
+            p.text-danger #{val.status}
+         else
+            p.text-warning #{val.status}
+         
+         p #[strong Imprenta:] #{val.imprint}
+         if val.status != 'Available'
+            p #[strong Fecha de devolucion:] #{val.datetime_formatted}
+         p #[strong Id:] 
+            a(href=val.url) #{val._id}
+
+      else
+         p No hay copias de este libro en la biblioteca
+
+
+
