@@ -1,0 +1,32 @@
+extends ../layout
+
+block content
+   h1= title
+
+   br
+   p #[strong ¿Realmente deseas eliminar esta Copia del libro?]
+
+   div.separador
+      p #[strong ID]: #{bookinstance._id}
+
+      p #[strong Titulo:] 
+         a(href=bookinstance.book.url) #{bookinstance.book.title}
+
+      p #[strong Imprenta:] #{bookinstance.imprint}
+
+      p #[strong Estado:] 
+         if bookinstance.status == 'Available'
+            span.text-success #{bookinstance.status}
+         else if bookinstance.status=='Maintenance'
+            span.text-danger #{bookinstance.status}
+         else
+            span.text-warning #{bookinstance.status}
+
+         if bookinstance.status != 'Available'
+            p #[strong Fecha:] #{bookinstance.date_formatted}
+
+   form(method='POST' action='')
+      div.form-group
+         input#id.form-control(type='hidden', name='id', required='true',
+            value=bookinstance._id)
+      button.btn.btn-primary(type='submit') Eliminar

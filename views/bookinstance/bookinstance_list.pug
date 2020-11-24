@@ -14,7 +14,7 @@ block content
             else
                span.text-warning #{bookin.status} 
             if bookin.status != 'Available'
-               span (Due: #{bookin.datetime_formatted})
+               span (Fecha Disponible: #{bookin.date_formatted})
       
       else
          li There are no book copies

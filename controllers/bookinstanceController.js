@@ -85,7 +85,7 @@ exports.createBookInstance = [
          bookinstance.save(function (err) {
             if (err) return next(err);
 
-            res.redirect(bookinstance.url);
+            res.status(201).redirect(bookinstance.url);
          });
       }
    }
@@ -105,7 +105,7 @@ exports.editBookInstanceView = function (req, res, next) {
          Book.find(callback)
       },
    }, function (err, results) {
-      if (err) { 
+      if (err) {
          return next(err);
       }
 
@@ -118,7 +118,7 @@ exports.editBookInstanceView = function (req, res, next) {
       // Success.
       res.render('bookinstance/bookinstance_form', {
          title: 'Actualizar Estancia del Libro', book_list: results.books,
-         selected_book: results.bookinstance.book._id, 
+         selected_book: results.bookinstance.book._id,
          bookinstance: results.bookinstance
       });
    });
@@ -172,10 +172,28 @@ exports.editBookInstance = [
    }
 ];
 
-exports.deleteBookInstanceView = function (req, res) {
+exports.deleteBookInstanceView = function (req, res, next) {
+   BookInstance.findById(req.params.id)
+      .populate('book')
+      .exec((err, bookinstance) => {
+         if (err) return next(err);
 
+         // si bookinstances es nulo o vacio, entonces redirecciona al la lista
+         if (bookinstance === null) {
+            res.redirect('/catalog/bookinstances');
+         }
+
+         res.render('bookinstance/bookinstance_delete', {
+            title: 'Delete BookInstance',
+            bookinstance: bookinstance
+         });
+      });
 }
 
-exports.deleteBookInstance = function (req, res) {
+exports.deleteBookInstance = function (req, res, next) {
+   BookInstance.findByIdAndRemove(req.body.id, (err) => {
+      if (err) return next(err);
 
+      res.redirect('/catalog/bookinstances');
+   });
 }

@@ -13,3 +13,8 @@ a {
    padding: 0;
    list-style: none;
 }
+
+.separador{
+   margin-left:20px;
+   margin-top:20px
+}
