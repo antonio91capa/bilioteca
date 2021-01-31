@@ -1,8 +1,8 @@
 # CRUD de Libreria
 
 Este es un ejemplo de un Sistema de Libreria.
-Con modelos:
 
+Entidades:
   - Libro
   - Autor
   - Genero
@@ -17,7 +17,7 @@ Con modelos:
   - luxon (parsear fechas)
   - pug (vistas HTML)
 
-Para correr localmente este proyecto:
+Para ejecutar este proyecto localmente:
 1. Descargar el proyecto
 1. Seguir los siguientes comandos en la terminal:
     ```sh
